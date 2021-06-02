@@ -1,10 +1,37 @@
+body {
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 .d3-component svg {
   background: #ddd;
   max-height: 300px;
+}
+
+.article-header {
+  margin-top: 150px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+
+
+.idyll-scroll-text .idyll-step  {
+  background:aliceblue
 }
 
 @media all and (max-width: 1000px) {
   .d3-component svg {
     max-height: 200px;
   }
+}
+
+div.tooltip {
+  position: absolute;
+  width: 250px;
+  max-height: 150px;
+  padding: 20px 20px;
+  font: 20px;
+  background: aliceblue;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 999;
 }

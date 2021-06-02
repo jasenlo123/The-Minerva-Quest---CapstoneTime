@@ -2,14 +2,35 @@
 
 [Header
   fullWidth:true
-  title:"How Much is a M21 Capstone Worth in Monies?"
-  subtitle:"Welcome to Idyll. Open index.idyll to start writing"
+  title:"How much does Capstone cost... in terms of time?"
+  subtitle:"Estimating how much time I might have spent on capstone work, and thinking about if it was worth it."
   author:"jasen lo m21 @ the Minerva Quest"
-  authorLink:"https://idyll-lang.org"
+  authorLink:"https://jasenlo123.github.io/TrustTheProcess/"
   date:"May 16, 2021"
-  background:"#222222"
-  color:"#ffffff"
+  background:"aliceblue"
+  color:"black"
    /]
+
+[data name:"capstoneTimeData" source:"capstoneTime.csv" /]
+
+[var name:"scrollerIndex" value:0 /]
+[Scroller currentStep:scrollerIndex offset:0.2]
+  [Graphic style:`{padding: 75}`]
+    [CapstoneTime data:capstoneTimeData step:scrollerIndex/]
+  [/Graphic]
+
+  [Step]## According to Minerva's course credit policy, students are expected to complete approximately 737 hours worth of capstone work! [/Step]
+  [Step]# 188 hours of Capstone Seminars (CP191 & CP192)   [/Step]
+  [Step]# Approximatley 399 Hours of Capstone Directed Study (CP193 & CP194)   [/Step]
+  [Step]# Manifest is worth 151 Hours  (CP195)   [/Step]
+  [Step]# Only about 16% of these hours are actually spent in class!   [/Step]
+  [Step]### Hover on the blocks to find out more to find out more!  [/Step]
+[/Scroller]
+
+
+Configuration can be done via the `idyll` field in `package.json`.
+
+## Markup
 
 
 ## Quick Math
@@ -47,135 +68,3 @@ Manifest : $1,750.00
 Total: [Display value:`total * oppCostFocusYear *  5650 / 60 * 2 + oppCostSynthesisYear *  11960 / 60 * 2 + oppCostSynthesisYear *  9040 / 60 + 1750 * 4` /]
 
 ## Chart Try
-
-
-[data name:"capstoneTimeData" source:"capstoneTime.csv" /]
-
-
-[var name:"scrollerIndex" value:0 /]
-[Scroller currentStep:scrollerIndex]
-  [Graphic style:`{padding: 50}`]
-    [CapstoneTime data:capstoneTimeData step:scrollerIndex/]
-  [/Graphic]
-
-  [Step]0 Hey, neat, here's some data![/Step]
-  [Step]# ...   [/Step]
-  [Step]## ...   [/Step]
-  [Step]## ...   [/Step]
-
-
-[/Scroller]
-
-
-Configuration can be done via the `idyll` field in `package.json`.
-
-## Markup
-
-Idyll is based on Markdown.
-
-You can use familiar syntax
-to create **bold** (`**bold**` ) and *italic* (`*italic*` ) styles,
-
-* lists
-* of
-* items,
-
-```
-* lists
-* of
-* items,
-```
-
-1. and numbered
-2. lists
-3. of items,
-
-
-```
-1. and numbered
-2. lists
-3. of items,
-```
-
-in addition to [hyperlinks](https://idyll-lang.org) and images:
-
-![quill](static/images/quill.svg)
-
-```
-![quill](static/images/quill.svg)
-```
-
-## Components
-
-Components can be embedded using a bracket syntax:
-
-```
-[Range /]
-```
-
-and can contain nested content:
-
-```
-[Equation]e = mc^{2}[/Equation]
-```
-
-Components accept properties:
-
-```
-[Range value:x min:0 max:1 /]
-```
-
-that can be bound to variables to achieve interactivity (more in next section).
-
-
-A variety of components are included by default. See [all the available components](https://idyll-lang.org/docs/components/). You can also use any html tag, for example: `[div] A div! [/div]`.
-
-To create your own, add it to the `components/` folder. There are examples of how to use Idyll with React and D3 based components already included.
-
-
-
-## Interactivity
-
-Here is how you can instantiate a variable and bind it to a component:
-
-[var name:"exampleVar" value:5 /]
-
-[Range min:0 max:10 value:exampleVar /]
-[Display value:exampleVar /]
-
-```
-[var name:"exampleVar" value:5 /]
-
-[Range min:0 max:10 value:exampleVar /]
-[Display value:exampleVar /]
-```
-
-## Learn More
-
-To learn more see the documentation at [https://idyll-lang.org/docs/](https://idyll-lang.org/docs/),
-join our [chatroom](https://gitter.im/idyll-lang/Lobby), or see the project on [GitHub](https://github.com/idyll-lang/idyll).
-
-[hr /]
-
-# Technical Details
-
-## Installation
-
-- Make sure you have `idyll` installed (`npm i -g idyll`).
-- Clone this repo and run `npm install`.
-
-## Developing a post locally
-
-Run `idyll`.
-
-## Building a post for production
-
-Run `idyll build`. The output will appear in the top-level `build` folder. To change the output location, change the `output` option in `package.json`.
-
-## Deploying
-
-Make sure your post has been built, then deploy the docs folder via any static hosting service.
-
-## Dependencies
-
-You can install custom dependencies by running `npm install <package-name> --save`. Note that any collaborators will also need download the package locally by running `npm install` after pulling the changes.
