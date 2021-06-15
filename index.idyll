@@ -1,70 +1,71 @@
 [meta title:"CapstoneCost" description:"Short description of your project" /]
 
+
 [Header
   fullWidth:true
-  title:"How much does Capstone cost... in terms of time?"
-  subtitle:"Estimating how much time I might have spent on capstone work, and thinking about if it was worth it."
+  title:"A guide to Capstone coursework requirements"
+  subtitle:"Breaking down exactly how much time Minerva expects students to work on Capstone, and if one really wants to do that."
   author:"jasen lo m21 @ the Minerva Quest"
   authorLink:"https://jasenlo123.github.io/TrustTheProcess/"
   date:"May 16, 2021"
   background:"aliceblue"
   color:"black"
    /]
+  
+[div className:"container"]
+  [span className:"text"]Scroll down to continue[/span]
+  [div className:"chevron"][/div]
+[/div]
 
 [data name:"capstoneTimeData" source:"capstoneTime.csv" /]
 
 [var name:"scrollerIndex" value:0 /]
-[Scroller currentStep:scrollerIndex offset:0.2]
-  [Graphic style:`{padding: 75}`]
+[Scroller currentStep:scrollerIndex offset:0.8]
+  [Graphic style:`{padding: 100}`]
     [CapstoneTime data:capstoneTimeData step:scrollerIndex/]
   [/Graphic]
 
-  [Step]## According to Minerva's course credit policy, students are expected to complete approximately 737 hours worth of capstone work! [/Step]
-  [Step]# 188 hours of Capstone Seminars (CP191 & CP192)   [/Step]
-  [Step]# Approximatley 399 Hours of Capstone Directed Study (CP193 & CP194)   [/Step]
-  [Step]# Manifest is worth 151 Hours  (CP195)   [/Step]
-  [Step]# Only about 16% of these hours are actually spent in class!   [/Step]
-  [Step]### Hover on the blocks to find out more to find out more!  [/Step]
+  [Step] This chart shows the time requirements of each capstone coursework component according to [a href:'https://hub.minerva.kgi.edu/academic-updates/course-credit-policy/' target:"_blank"] Minerva's course credit policy[/a]. Peek the axis - **students are expected to complete approximately 737 total hours worth of capstone coursework!**[/Step]
+  [Step] **25%** of these hours, or approximately **188 hours**, are *Capstone Seminars* in the 3rd year, or *Focus Year* in Minerva lingo and junior year in United States university language. (CP191 & CP192).   [/Step]
+  [Step] **54%** of capstone coursework is completed in the approximately **399 Hours** of *Capstone Directed Study* throughout the 4th year of a Minerva student's undergraduate career. Minerva calls this year, otherwise known as senior year in the United States, *Synthesis Year* (CP193 & CP194).   [/Step]
+  [Step]Included in the *Synthesis Year* is *Manifest*, which is worth **151 hours** of coursework. All of *Manifest*'s coursework is completed in three weeks immediately before a Minerva student graduates (CP195).   [/Step]
+  [Step]Only about **16%** of these hours, or about **118 hours**, are actually expected to be spent in class! That seems like much fewer than I remember, consider how long those *Capstone Seminar* classes felt.[/Step]
+  [Step]On the other hand, **43%** of capstone coursework, or about **320 hours**, is assignments and pre-class work. This is the amount of time Minerva expects that a student works on their capstone projects on their own. [/Step]
+ [Step]**Hover to find out more** about each capstone coursework component and their time requirements. [/Step]
+  
 [/Scroller]
 
+[h1 className:"dek"] 737 hours... thoughts from a new grad[/h2]
+[br/]
+I decided to make this viz because I was genuinely curious about estimating how much time I had spent working on Capstone. Having recently completed my Capstone, I recognise that I got caught up in Minerva's grandiose language for describing Capstone. The phrase: *pinnacle of your undergraduate career*, comes to mind. 
 
-Configuration can be done via the `idyll` field in `package.json`.
+I honestly wished I had recognised earlier that Capstone is just another graduation requirement, like any other. That recognition would have saved me so much stress and anxiety, and I wonder what I could have otherwise done with the amount of energy and time I devoted to Capstone. 
 
-## Markup
+It's difficult to imagine precisely how much time I might have spent on Capstone. Thankfully, these helpful coursework minute requirements might serve as a somewhat accurate estimate of that quantity of time. The viz below shows some some other things I could or might have done with my time had I not spent that time working on Capstone. Note that following viz below doesn't try to imagine an alternative reality where I spend even more time on Capstone, just less.
 
-
-## Quick Math
-
-### Focus Year Wages
-
-`historical min wage https://sfgov.org/olse//historical-wage-rates-definition-government-supported-employee`
-
-[var name:"oppCostFocusYear" value:15.59 /]
-
-Hourly Wage: [Range value:oppCostFocusYear min:10 max:40 /] [Display value:`oppCostFocusYear` /]
-
-Focus Year Wages : [Display value:`oppCostFocusYear` /] * 5650 Minute Requirement / 60 minutes * 2 Semesters: [Display value:`oppCostFocusYear *  5650 / 60 * 2` /]
-
-### 2020 Synthesis Year Wages
-[var name:"oppCostSynthesisYear" value:16.07 /]
-
-Hourly Wage: [Range value:oppCostSynthesisYear min:10 max:40 /] [Display value:`oppCostSynthesisYear` /]
-
-Synthesis Year Wages : [Display value:`oppCostSynthesisYear` /] * 11960 Minute Requirement / 60 minutes * 2 Semesters + [Display value:`oppCostSynthesisYear` /] * 9040 Minute Requirement / 60 minutes : [Display value:`oppCostSynthesisYear *  11960 / 60 * 2 + oppCostSynthesisYear *  9040 / 60` /]
-[var name:"b" value:`oppCostSynthesisYear *  11960 / 60 * 2 + oppCostSynthesisYear *  9040 / 60` /]
+[var name:"boop" value:737 /]
+[var name:"effort" value:90/]
+*What are some other things you could have done with your time and energy if you worked a little less harder on Capstone?*
+*Estimate how much effort you put into Capstone: [Range value:effort min:14 max:100 step:0.5/] [Display value:`effort`/]%*
 
 
-### Focus Year Tuition
+[Graphic className:"effortViz" style:`{padding: 10}`]
+  [barViz data:`boop*effort/100`/]
+[/Graphic]
 
+[Conditional if:`effort > 99`] [h3] Your Capstone effort level was [Display value:`effort/100` format:".0%"/] ([Display value:`boop*effort/100`/] hours). Your Capstone was probably great! [/h3][/Conditional]
 
+[Conditional if:`effort <= 99 && effort > 77`] [h3]Your Capstone effort level was [Display value:`effort/100` format:".0%"/] ([Display value:`boop*effort/100`/] hours). It seems like you were a good student who worked diligently on Capstone. [/h3][/Conditional]
 
-### 2020 Synthesis Year Tution
+[Conditional if:`effort <= 77 && effort > 73`] [h3]Your Capstone effort level was [Display value:`effort/100` format:".0%"/] ([Display value:`boop*effort/100`/] hours). Based on your effort level, you had time ([Display value:`boop - (boop*effort/100)`/] hours) to take another senior tutorial at Minerva (if that was allowed...)! [/h3][/Conditional]
 
+[Conditional if:`effort <= 73 && effort > 67`] [h3]Your Capstone effort level was [Display value:`effort/100` format:".0%"/] ([Display value:`boop*effort/100`/] hours). Based on your effort level, you had time ([Display value:`boop - (boop*effort/100)`/] hours) to [a href:'https://www.today.com/health/how-long-does-it-take-make-friend-friendship-advice-t126538' target:"_blank"] make a good or best friend[/a] instead! 
+[/h3][/Conditional]
 
-Manifest : $1,750.00
+[Conditional if:`effort <= 67 && effort > 34`] [h3]Your Capstone effort level was [Display value:`effort/100` format:".0%"/] ([Display value:`boop*effort/100`/] hours). Based on your effort level, you had time ([Display value:`boop - (boop*effort/100)`/] hours) to complete an internship or practicum, and earn 4 credits from Minerva (definitely allowed and even encouraged).[/h3][/Conditional]
 
+[Conditional if:`effort <= 34 && effort > 18`] [h3]Your Capstone effort level was [Display value:`effort/100` format:".0%"/] ([Display value:`boop*effort/100`/] hours). Based on your effort level, you had time ([Display value:`boop - (boop*effort/100)`/] hours) to work a full-time job, 40 hours a week, for 3 whole months.[/h3][/Conditional]
 
-[var name:"total" value:1 /]
-Total: [Display value:`total * oppCostFocusYear *  5650 / 60 * 2 + oppCostSynthesisYear *  11960 / 60 * 2 + oppCostSynthesisYear *  9040 / 60 + 1750 * 4` /]
+[Conditional if:`effort <= 18 && effort > 14`] [h3]Your Capstone effort level was [Display value:`effort/100` format:".0%"/] ([Display value:`boop*effort/100`/] hours). Based on your effort level, you had time ([Display value:`boop - (boop*effort/100)`/] hours) to learn another language and become a fluent speaker [a href:'https://www.state.gov/foreign-language-training/' target:"_blank"] according to the US Foreign Service Institute[/a]. [/h3] [/Conditional]
 
-## Chart Try
+[Conditional if:`effort == 14`] [h3]Your Capstone effort level was [Display value:`effort/100` format:".0%"/] ([Display value:`boop*effort/100`/] hours). This is the bare minimum amount of coursework time even without doing any pre-class and assignments - you still have to attend classes! (this assumes one takes all of their available absences!) [/h3][/Conditional]

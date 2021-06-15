@@ -1,17 +1,16 @@
-component, subComponent, minutes, inClass
-Capstone Seminar, In class, 1620, 1
-Capstone Seminar, Preparation, 4860, 0
-Capstone Seminar, Assignments, 4800, 0
-Capstone Directed Study, In Class (instructor), 1260, 1
-Capstone Directed Study, In Class (no instructor), 1260,1
-Capstone Directed Study, Preparation, 7000, 0
-Capstone Directed Study, Assignments, 14400, 0
-Manifest, In class, 1800, 1
-Manifest, Preparation, 2520, 0
-Manifest, Design own class, 1320, 0
-Manifest, Design own defense, 900, 0
-Manifest, Consequent, 1200, 1
-Manifest, Assessments of learning, 300, 0
-Manifest, Feedback sessions, 1000, 0
+component, subComponent, minutes, inClass, desc
+Capstone Seminar, Class, 1620, 1, "Students attend class sessions once a week for nine weeks with other students and their instructor, with occasional interspersed independent study weeks when major deliverables are required and more time is required to complete them. Total in-class time is 810 minutes per semester. "
+Capstone Seminar, Pre-class, 4860, 0, "There is substantial pre-class work and deliverables for each class session, 180 minutes per class session or 2430 minutes total. "
+Capstone Seminar, Assignments, 4800, 0, "There are seven assignments, which take a minimum of 2400 minutes to complete."
+Capstone Directed Study, Class, 2520, 1, "Students meet multiple times in class sessions with a small group of students (three to five) and their Advisor, during which Peer and Instructor feedback occurs on intermediate products. A minimum of seven class meetings is required with instructor and students present (630 minutes) and seven class meetings with other small group of students (630 minutes)."
+Capstone Directed Study, Pre-class, 7000, 0, "Preparation time for each of class session requires 3500 minutes."
+Capstone Directed Study, Assignments, 14400, 0, "Five substantial assignments to demonstrate substantial progress on their Capstone project require 7200 minutes."
+Manifest, Class, 1800, 1, "Students attend class for 1800 minutes during the first two weeks: 1) Week 1 consists of class sessions in which students teach an active learning class on Forum, based on their Capstone Project, demonstrating their application of HCs and providing opportunities for attending students to apply HCs. 2) Week 2 consists of Capstone defenses."
+Manifest, Pre-class, 2520, 0, "Preparation for the 28 class sessions that students attend over these two weeks is 90 minutes/class, total 2520 minutes."
+Manifest, Class design, 1320, 0, "Designing and leading their own class sessions is estimated at 1320 minutes for their active learning class."
+Manifest, Defense design, 900, 0,"Designing and leading their own defense is estimated at 900 minutes."
+Manifest, Consequent, 1200, 1, "Students are required to contribute to multiple events during week 3: Consequent, which is a two-day conference with world leaders from many fields during which students lead in-depth discussions on a range of critically important issues (1200 minutes);"
+Manifest, Learning assessments, 300, 0, "Assessments of their learning including the CLA+ (300 minutes)"
+Manifest, Feedback sessions, 1000, 0, "Focus group, reflection, and feedback sessions (1000 minutes)."
 
 

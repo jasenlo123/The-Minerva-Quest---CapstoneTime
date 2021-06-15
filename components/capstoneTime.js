@@ -5,7 +5,7 @@ const { select } = require('d3-selection');
 
 /* sizing parameters*/
 const size = 800;
-const margin = ({top: 350, right: 0, bottom: 0, left: 0})
+const margin = ({top: 300, right: 0, bottom: 0, left: 0})
 const x = d3.scaleLinear([0, 1], [margin.left, size - margin.right])
 
 class CapstoneTime extends D3Component {
@@ -29,9 +29,9 @@ class CapstoneTime extends D3Component {
         endValue: (value += d.minutes) / total,
         inClass: d.inClass,
         component: d.component,
-        subComponent: d.subComponent
+        subComponent: d.subComponent,
+        description: d.desc
       }));
-    console.log(stack)
   
     /* append svg */
     const svg = (this.svg = d3.select(node).append('svg'));
@@ -44,14 +44,14 @@ class CapstoneTime extends D3Component {
     var rects = svg.append("g")
       .attr("stroke", "black")
       .attr("stroke-opacity",0.1)
-      .attr("stroke-width",1.5)
+      .attr("stroke-width",2)
       .selectAll("rect")
       .data(stack)
       .join("rect")
       .attr("fill", "white")
       .attr("x", d => x(d.startValue)+1)
       .attr("y", margin.top)
-      .attr("width", d => x(d.endValue) - x(d.startValue)- 2)
+      .attr("width", d => x(d.endValue) - x(d.startValue)- 2.5)
       .attr("height", 100 - margin.bottom)
 
 
@@ -64,33 +64,62 @@ class CapstoneTime extends D3Component {
     // Add scales to axis
     var scale = d3.scaleLinear()
       .domain([0, total/60])
-      .range([3, size-8])
+      .range([5, size-15])
       
     var x_axis = d3.axisBottom()
                   .tickValues(scale.domain())
                   .scale(scale);
     //Append group and insert axis
     svg.append("g")
-    .attr("transform", "translate(0,500)")
+    .attr("transform", "translate(0,450)")
     .call(x_axis);
 
     //axis labels
     svg.append("text")
     .attr("font-family", "sans-serif")
-    .attr("font-size", 10)
+    .attr("font-size", 15)
     .attr("fill", "black")
-    .attr("x", size/2)
-    .text("Hours")
-    .attr("y", 520)
+    .attr("x", 200)
+    .text("Time Requirements for Capstone Coursework (in Hours)")
+    .attr("y", 470)
 
+    d3.selectAll(".tick")
+    .each(function(d, i){
+      d3.select(this).style("font-size","15px");
+    });
 
+    //highlight 737 hours
     svg
-    .append('circle')
-    .attr('cx', 785)
-    .attr('cy', 513)
-    .attr('r', 15)
+    .append('line')
+    .attr("x1", 775)
+    .attr("y1", 480)
+    .attr("x2", 795)
+    .attr("y2", 480)
     .attr('stroke', 'red')
-    .attr('fill', "none")
+    .attr('opacity', 1)
+    .style("stroke-width", 10)
+
+    //rect text labels 
+    var rectTexts = svg.append("g")
+    .attr("font-size", 7)
+    .selectAll("text")
+    .data(stack.filter(d => x(d.endValue) - x(d.startValue) > 25))
+    .join("text")
+    .attr("transform", d => `translate(${x(d.startValue) + 4}, 6)`)
+    .call(text => text.append("tspan")
+        .attr("y", "380")
+        .attr("font-weight", "bold")
+        .text(d => d.subComponent))
+        .attr("fill-opacity", 0)
+    .call(text => text.append("tspan")
+        .attr("x", 0)
+        .attr("y", "390")
+        .text(d => Math.round(d.hours)));
+
+    rectTexts.each(function(d) {
+      d3.select(this).classed(d.name.split(" ").join("")+"Text", () => d3.select(this).datum().name == d.name)
+    });
+  
   }
 
    update(props, oldProps) {
@@ -107,13 +136,15 @@ class CapstoneTime extends D3Component {
       .selectAll("rect")
       .attr('stroke-opacity',0)
 
-      svg
-      .append('circle')
-      .attr('cx', 785)
-      .attr('cy', 513)
-      .attr('r', 15)
+      svg.append('line')
+      .attr("x1", 775)
+      .attr("y1", 480)
+      .attr("x2", 795)
+      .attr("y2", 480)
       .attr('stroke', 'red')
-      .attr('fill', "none")
+      .style("stroke-width", 10)
+      .attr('opacity', 1)
+      .transition()
     }
     
     if (props.step == 1) {
@@ -127,6 +158,12 @@ class CapstoneTime extends D3Component {
         .selectAll(".CapstoneSeminar")
         .transition()
         .attr("fill", "#fc8d59")
+      svg
+        .selectAll(".CapstoneSeminarText")
+        .transition()
+        .attr("fill-opacity", 1)
+
+      
 
       svg.append("text")
         .attr("font-family", "sans-serif")
@@ -137,8 +174,8 @@ class CapstoneTime extends D3Component {
         .attr("y", margin.top - 20)
         .attr("font-weight", "bold")
 
-      svg.selectAll("circle")
-        .remove()
+      svg.selectAll("line")
+        .attr('opacity', 0)
         .transition()
      }
 
@@ -153,7 +190,10 @@ class CapstoneTime extends D3Component {
           .selectAll(".CapstoneDirectedStudy")
           .transition()
           .attr("fill", "#99d594")
-
+        svg
+          .selectAll(".CapstoneDirectedStudyText")
+          .transition()
+          .attr("fill-opacity", 1)
 
         svg.append("text")
           .attr("font-family", "sans-serif")
@@ -163,6 +203,7 @@ class CapstoneTime extends D3Component {
           .text("Capstone Directed Study")
           .attr("y", margin.top - 20)
           .attr("font-weight", "bold")
+        
       }
      else if (props.step == 3)  {
         var svg = select('svg');
@@ -176,6 +217,10 @@ class CapstoneTime extends D3Component {
           .selectAll(".Manifest")
           .transition()
           .attr("fill", "#91bfdb")
+        svg
+          .selectAll(".ManifestText")
+          .transition()
+          .attr("fill-opacity", 1)
 
 
         svg.append("text")
@@ -199,17 +244,26 @@ class CapstoneTime extends D3Component {
           .attr('stroke-opacity',function (d) {
             return (d.inClass == 0) ?  0: 1;
               })
-    //    .attr('stroke-width',function (d) {
-      //    return (d.inClass == 0) ?  0: 1.5;
-        //    })
-        //restore text infront
-        d3.select(".idyll-scroll-graphic")
-        .style("z-index", -1)
+
 
     }
-     
-     else if (props.step == 5)  {
+    else if (props.step == 5)  {
 
+      //in class?
+      var svg = select('svg');
+      svg
+        .selectAll("rect")
+        .transition()
+        .attr('stroke-opacity',function (d) {
+          return (d.subComponent.includes("Assignments") || d.subComponent.includes("Pre-class") ) ?  1: 0;
+            })
+      //restore text infront
+      d3.select(".idyll-scroll-graphic")
+      .style("z-index", -1)
+  }
+     
+     else if (props.step == 6)  {
+      var svg = select('svg');
         //init tooltip for later
         const tooltip = d3.select(".idyll-scroll-graphic")
           .append("div")
@@ -217,7 +271,6 @@ class CapstoneTime extends D3Component {
           .style("opacity", 0);
 
         //make transparent
-        var svg = select('svg');
         svg
         .selectAll("rect")
         .transition()
@@ -235,7 +288,7 @@ class CapstoneTime extends D3Component {
           rectUnderMouse.attr('opacity', 0.8);
           tooltip
             .style("opacity", 1)
-            .html(`<b>${d.subComponent}</b>` + "<br/>" + d.component + "<br/>" + "Requirements: " + `<b>${Math.round(d.hours)} hours</b>`)
+            .html(`<b>${d.subComponent}</b>` + "<br/>" + d.component + "<br/>" + "Requirements: " + `<b>${Math.round(d.hours)} hours</b><br/><br/>` + `<i>${d.description}</i>`)
        })
        .on("mousemove", function(event) {
         tooltip

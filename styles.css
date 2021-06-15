@@ -1,5 +1,16 @@
 body {
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+p {
+  font-size: 18px;
+  line-height: 33px;
+}
+
+.idyll-scroll {
+  margin-top: -100px;
+  margin-bottom: -50px;
+
 }
 .d3-component svg {
   background: #ddd;
@@ -7,16 +18,125 @@ body {
 }
 
 .article-header {
-  margin-top: 150px;
+  margin-top: 100px;
   margin-left: 150px;
   margin-right: 150px;
+  border: solid 1px #333;
+  box-shadow: #ddd 2px 2px;
 }
 
+h1 {
+  padding: 0px 50px 0px 50px;
+}
 
+h2 {
+  padding: 0px 50px
+}
 
 .idyll-scroll-text .idyll-step  {
   background:aliceblue
 }
+
+div.tooltip {
+  position: absolute;
+  width: 250px;
+  max-height: 500px;
+  padding: 20px 20px;
+  font: 20px;
+  background: aliceblue;
+  pointer-events: none;
+  z-index: 999;
+  border: solid 1px #333;
+  box-shadow: #ddd 2px 2px;
+}
+
+
+.container {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.chevron {
+  margin: auto;
+  position: relative;
+  width: 28px;
+  height: 8px;
+  opacity: 0;
+  transform: scale3d(0.5, 0.5, 0.5);
+  animation: move 3s ease-out infinite;
+  color: black;
+
+}
+
+.chevron:first-child {
+  animation: move 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 51%;
+  background: black;
+}
+
+.chevron:before {
+  left: 0;
+  transform: skew(0deg, 30deg);
+}
+
+.chevron:after {
+  right: 0;
+  width: 50%;
+  transform: skew(0deg, -30deg);
+}
+
+@keyframes move {
+  25% {
+    opacity: 1;
+
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  67% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+  }
+}
+
+.text {
+  font-size: 12px;
+  color: black;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .25;
+  animation: pulse 1.5s linear alternate infinite;
+}
+
+@keyframes pulse {
+  to {
+    opacity: 1;
+  }
+}
+
+.effortViz {
+  margin: auto;
+  width: 100%;
+}
+
 
 @media all and (max-width: 1000px) {
   .d3-component svg {
@@ -24,14 +144,6 @@ body {
   }
 }
 
-div.tooltip {
-  position: absolute;
-  width: 250px;
-  max-height: 150px;
-  padding: 20px 20px;
-  font: 20px;
-  background: aliceblue;
-  border-radius: 8px;
-  pointer-events: none;
-  z-index: 999;
+.idyll-text-container {
+  max-width: 850px !important;
 }
